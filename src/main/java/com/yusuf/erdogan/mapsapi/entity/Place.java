@@ -5,10 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name= "PLACE")
+@Table(name= "place")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,4 +29,7 @@ public class Place {
     private String placeId;
 
     private Double rating;
+
+    @ManyToMany(mappedBy = "places")
+    private Set<PlaceRequest> placeRequests = new HashSet<>();
 }
