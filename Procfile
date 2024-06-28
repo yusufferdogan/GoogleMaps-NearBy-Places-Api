@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/mapsapi.jar
+web: java -Dserver.port=8070 -jar target/mapsapi.jar
