@@ -7,6 +7,7 @@ import jakarta.validation.ConstraintValidatorContext;
 public class RadiusValidator implements ConstraintValidator<ValidRadius, Integer> {
     @Override
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
-        return value != null && value > 0; // Define your own range if needed
+        //google places api constraints
+        return value != null && value > 0 && value <= 50000;
     }
 }
