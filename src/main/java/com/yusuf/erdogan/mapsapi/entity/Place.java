@@ -1,7 +1,9 @@
 package com.yusuf.erdogan.mapsapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.yusuf.erdogan.mapsapi.validator.ValidPlaceId;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.HashSet;
@@ -25,6 +27,8 @@ public class Place {
 
     private String vicinity;
 
+    @ValidPlaceId
+    @NotNull
     @Column(name = "place_id", unique = true)
     private String placeId;
 

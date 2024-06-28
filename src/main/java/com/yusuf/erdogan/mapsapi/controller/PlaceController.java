@@ -6,11 +6,11 @@ import com.yusuf.erdogan.mapsapi.dto.utilities.result.DataResult;
 import com.yusuf.erdogan.mapsapi.entity.Place;
 import com.yusuf.erdogan.mapsapi.entity.PlaceRequest;
 import com.yusuf.erdogan.mapsapi.service.Impl.PlaceServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -18,13 +18,13 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/places")
 @RequiredArgsConstructor
+@Validated
 public class PlaceController {
 
     private final PlaceServiceImpl placeService;
 
-
     @GetMapping("/search")
-    public DataResult<PlacesResponse> searchNearby(PlacesRequest request) {
+    public DataResult<PlacesResponse> searchNearby(@Valid @ModelAttribute PlacesRequest request) {
         return (placeService.getPlaces(request));
     }
 

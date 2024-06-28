@@ -58,8 +58,13 @@ public class PlaceServiceImpl implements PlaceService {
 
         placeRequestRepository.save(placeRequest);
         for (Place place : places) {
+            Optional<Place> existingPlace = placeRepository.findByPlaceId(place.getPlaceId());
+            if (existingPlace.isPresent()) {
+                place = existingPlace.get();
+            } else {
+                placeRepository.save(place);
+            }
             place.getPlaceRequests().add(placeRequest);
-            placeRepository.save(place);
         }
 
         return new SuccessDataResult<>(new PlacesResponse(new ArrayList<>(places)), "Fetched from Google Places API");
