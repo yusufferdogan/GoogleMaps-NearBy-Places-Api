@@ -6,6 +6,11 @@ import com.yusuf.erdogan.mapsapi.dto.utilities.result.DataResult;
 import com.yusuf.erdogan.mapsapi.entity.Place;
 import com.yusuf.erdogan.mapsapi.entity.PlaceRequest;
 import com.yusuf.erdogan.mapsapi.service.Impl.PlaceServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +28,18 @@ public class PlaceController {
 
     private final PlaceServiceImpl placeService;
 
+    @Operation(summary = "Search nearby places")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found places",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = PlacesResponse.class)) }),
+            @ApiResponse(responseCode = "400", description = "Invalid input",
+                    content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = @Content)
+    })
     @GetMapping("/search")
     public DataResult<PlacesResponse> searchNearby(@Valid @ModelAttribute PlacesRequest request) {
         return (placeService.getPlaces(request));
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<Set<PlaceRequest>>> getAllPlaces() {
-        return ResponseEntity.ok(placeService.getAllPlaces().stream().map(Place::getPlaceRequests).toList());
     }
 }
