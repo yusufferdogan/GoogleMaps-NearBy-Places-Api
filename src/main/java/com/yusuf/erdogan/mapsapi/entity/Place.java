@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -46,4 +45,6 @@ public class Place {
             }
     )
     private Set<PlaceRequest> placeRequests = new HashSet<>();
+
+    private String photo;
 }

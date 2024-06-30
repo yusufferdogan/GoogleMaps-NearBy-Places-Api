@@ -79,6 +79,9 @@ public class PlaceServiceImpl implements PlaceService {
         place.setVicinity(result.getVicinity());
         place.setPlaceId(result.getPlaceId());
         place.setRating(result.getRating());
+        if (result.getPhotos() != null) {
+            place.setPhoto(result.getPhotos().get(0).getPhotoReference());
+        }
         return place;
     }
 }
