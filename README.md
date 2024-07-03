@@ -5,7 +5,8 @@ This project is a Java-based backend service for finding nearby places using Goo
 ## Deployed 
 Deployed to https://web-production-8958.up.railway.app
 <br/><br/>
-Sample Query [https://web-production-8958.up.railway.app/api/places/search?latitude=40.9905539&longitude=29.0195239&radius=500](https://web-production-8958.up.railway.app/api/places/search?latitude=40.9905539&longitude=29.0195239&radius=500)
+Sample Query [https://web-production-8958.up.railway.app/api/places/search?latitude=40.9905539&longitude=29.0195239&radius=500](https://web-production-8958.up.railway.app/api/places/search?latitude=40.9905539&longitude=29.0195239&radius=500) <br/><br/>
+Swagger Page : https://web-production-8958.up.railway.app/swagger-ui/index.html#/place-controller/searchNearby
 
 ## Features
 
